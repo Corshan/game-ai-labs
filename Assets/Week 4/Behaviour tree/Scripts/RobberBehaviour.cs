@@ -41,10 +41,14 @@ public class RobberBehaviour : MonoBehaviour { // Going on to agent and will run
         Leaf goToVan = new Leaf("Go To Van", GoToVan);
 
         Selector opendoor = new Selector("Open Door");                  // Set up open door selector sequence
+
+        Inverter invertMoney = new Inverter("Invert Money");
+        invertMoney.AddChild(hasGotMoney);
+
         opendoor.AddChild(goToFrontdoor);                           
         opendoor.AddChild(goToBackdoor);
 
-        steal.AddChild(hasGotMoney);                                    // Execute Steal sequence backwards   
+        steal.AddChild(invertMoney);                                    // Execute Steal sequence backwards   
         steal.AddChild(opendoor);
         steal.AddChild(goToDiamond);
         steal.AddChild(goToBackdoor);
@@ -57,7 +61,7 @@ public class RobberBehaviour : MonoBehaviour { // Going on to agent and will run
 
     public Node.Status HasMoney() {
 
-        if (money >= 500) return Node.Status.FAILURE;
+        if (money < 500) return Node.Status.FAILURE;
         return Node.Status.SUCCESS;
     }
 

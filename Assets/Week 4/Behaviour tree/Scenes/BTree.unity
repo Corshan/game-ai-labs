@@ -2165,7 +2165,7 @@ MonoBehaviour:
   van: {fileID: 299087570}
   backdoor: {fileID: 919599686}
   frontdoor: {fileID: 1791870521}
-  money: 422
+  money: 597
 --- !u!1 &716268924
 GameObject:
   m_ObjectHideFlags: 0
@@ -5690,7 +5690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33d3b1742a76841845ab8ffe60443f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
 --- !u!4 &1796479289 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a5028766c6c2448878d200bb33de1f59, type: 3}
