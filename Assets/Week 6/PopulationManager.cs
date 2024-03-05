@@ -9,7 +9,7 @@ public class PopulationManager : MonoBehaviour {
     public int populationSize = 10;                         // 2) Population size (bigger pop size, better outcomes)
     List<GameObject> population = new List<GameObject>();   // 3) List of people created.
     public static float elapsed = 0;                        // 4) Timer
-    int trialTime = 10;
+    [SerializeField] float trialTime = 10;
     int generation = 1;
 
     GUIStyle guiStyle = new GUIStyle();                     // 9) OnGui for screen display.
@@ -30,6 +30,8 @@ public class PopulationManager : MonoBehaviour {
             go.GetComponent<DNA>().r = Random.Range(0.0f,1.0f);                         // 8) Set DNA, Random colour (R,G,B)
             go.GetComponent<DNA>().g = Random.Range(0.0f,1.0f);                         //    111 = White, 000 = Black
             go.GetComponent<DNA>().b = Random.Range(0.0f,1.0f);
+            float randomNum = Random.Range(0.5f,2);
+            go.transform.localScale = new Vector3(randomNum, randomNum, randomNum);
             population.Add(go);
         }       
     }
@@ -58,12 +60,16 @@ public class PopulationManager : MonoBehaviour {
             offspring.GetComponent<DNA>().r = Random.Range(0,10) < 5 ? dna1.r : dna2.r; // 26) 50% of the time the offspring
             offspring.GetComponent<DNA>().g = Random.Range(0,10) < 5 ? dna1.g : dna2.g; //     will get its parent's R channel value.
             offspring.GetComponent<DNA>().b = Random.Range(0,10) < 5 ? dna1.b : dna2.b; //     the other 50% of the time it will
+            offspring.transform.localScale = Random.Range(0,10) < 5 ? dna1.transform.localScale : dna2.transform.localScale; //     the other 50% of the time it will
+            
         }                                                                               //     the other parent's R channel value.
         else 
         {
             offspring.GetComponent<DNA>().r = Random.Range(0.0f,1.0f);
             offspring.GetComponent<DNA>().g = Random.Range(0.0f,1.0f);
             offspring.GetComponent<DNA>().b = Random.Range(0.0f,1.0f);
+             float randomNum = Random.Range(0.5f,1.5f);
+            offspring.transform.localScale = new Vector3(randomNum, randomNum, randomNum);
         }
         return offspring;
     }
@@ -72,7 +78,8 @@ public class PopulationManager : MonoBehaviour {
     {
         List<GameObject> newPopulation = new List<GameObject>();
         //get rid of unfit individuals
-        List<GameObject> sortedList = population.OrderByDescending(o => o.GetComponent<DNA>().timeToDie).ToList();
+        // List<GameObject> sortedList = population.OrderByDescending(o => o.GetComponent<DNA>().timeToDie).ToList();
+        List<GameObject> sortedList = population.OrderBy(_ => Random.Range(0,11)).ToList();
 
                                                             // 14) Order by timeToDie
                                                             //     People with longer times will be at the end of the list.

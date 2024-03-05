@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   personPrefab: {fileID: 1734903543758822, guid: 51d6f09c4aada4554a972165211005c2, type: 3}
   populationSize: 10
+  trialTime: 0.5
 --- !u!4 &1095255431
 Transform:
   m_ObjectHideFlags: 0
