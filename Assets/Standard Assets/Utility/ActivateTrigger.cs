@@ -35,39 +35,40 @@ namespace UnityStandardAssets.Utility {
 
                 switch (action) {
                     case Mode.Trigger:
-                        if (targetGameObject != null) {
-                            targetGameObject.BroadcastMessage("DoActivateTrigger");
-                        }
-                        break;
+                    if (targetGameObject != null) {
+                        targetGameObject.BroadcastMessage("DoActivateTrigger");
+                    }
+                    break;
                     case Mode.Replace:
-                        if (source != null) {
-                            if (targetGameObject != null) {
-                                Instantiate(source, targetGameObject.transform.position,
-                                            targetGameObject.transform.rotation);
-                                Destroy(targetGameObject);
-                            }
+                    if (source != null) {
+                        if (targetGameObject != null) {
+                            Instantiate(source, targetGameObject.transform.position,
+                                        targetGameObject.transform.rotation);
+                            // DestroyObject(targetGameObject);
+                            Destroy(targetGameObject);
                         }
-                        break;
+                    }
+                    break;
                     case Mode.Activate:
-                        if (targetGameObject != null) {
-                            targetGameObject.SetActive(true);
-                        }
-                        break;
+                    if (targetGameObject != null) {
+                        targetGameObject.SetActive(true);
+                    }
+                    break;
                     case Mode.Enable:
-                        if (targetBehaviour != null) {
-                            targetBehaviour.enabled = true;
-                        }
-                        break;
+                    if (targetBehaviour != null) {
+                        targetBehaviour.enabled = true;
+                    }
+                    break;
                     case Mode.Animate:
-                        if (targetGameObject != null) {
-                            targetGameObject.GetComponent<Animation>().Play();
-                        }
-                        break;
+                    if (targetGameObject != null) {
+                        targetGameObject.GetComponent<Animation>().Play();
+                    }
+                    break;
                     case Mode.Deactivate:
-                        if (targetGameObject != null) {
-                            targetGameObject.SetActive(false);
-                        }
-                        break;
+                    if (targetGameObject != null) {
+                        targetGameObject.SetActive(false);
+                    }
+                    break;
                 }
             }
         }
